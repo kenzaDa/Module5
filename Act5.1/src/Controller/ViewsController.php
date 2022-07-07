@@ -18,4 +18,21 @@ class ViewsController extends AbstractController
         ]);
     }
 
+
+
+     /**
+     * @Route("/views1", name="_admin_home")
+     */
+    public function show(): Response
+    {
+        return $this->render('views/view1.html.twig');
+    }
+
+     /**
+     * @Route("/views2", name="_anonymos_page")
+     */
+    public function show2(): Response
+    {
+        return $this->render('views/view2.html.twig');
+    }
 }

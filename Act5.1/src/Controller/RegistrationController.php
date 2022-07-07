@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class RegistrationController extends AbstractController
 {
@@ -36,7 +37,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('security_login');
+            return $this->redirectToRoute('_profiler_home');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -44,9 +45,18 @@ class RegistrationController extends AbstractController
         ]);
     }
     /**
-     * @Route("/login", name="security_login")
+     * @Route("/log", name="security_login")
      */
-    public function login()
-    { return $this->render('registration/login.html.twig');
-}
+    // public function login(){
+
+    //  return $this->render('registration/login.html.twig');
+// }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    // public function logout()
+    // {
+        
+    // }
 }
