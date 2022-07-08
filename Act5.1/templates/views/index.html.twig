@@ -74,7 +74,7 @@ Cette recette plait beaucoup, et j’adore toujours autant la faire découvrir a
 
 
 
-    {% if (app.user.email =="admin@gmail.com")%}
+    {% if is_granted('ROLE_ADMIN')%}
 
 <div class="container">
     <h1>Ajouter une recette</h1>
