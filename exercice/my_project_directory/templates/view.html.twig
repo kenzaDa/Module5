@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}new form{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1></h1>
+
+    {{ form_start(Form) }}
+        {{ form_row(Form.Label) }}
+        {{ form_row(Form.Prix)}}
+      
+
+    {{ form_end(Form) }}
+    
+    </div>
+{% endblock %}
