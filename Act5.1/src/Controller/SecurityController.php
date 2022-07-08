@@ -34,4 +34,34 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
         
     }
+
+
+    /**
+ * @Route("/access-denied", name="app_access_denied")
+ */
+public function accessDenied()
+{
+    if ( $this->getUser() ) {
+        return $this->redirectToRoute('_profiler_home');
+    }
+
+    return $this->redirectToRoute('app_login');
 }
+
+
+
+   /**
+ * @Route("/access-onlyadmin", name="app_denied")
+ */
+public function accessonlyadmin()
+{
+    if ( $this->getUser() ) {
+        return $this->redirectToRoute('_profiler_home');
+    }
+
+    return $this->redirectToRoute('_admin_home');
+}
+}
+
+
+
