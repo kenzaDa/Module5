@@ -9,11 +9,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ViewsController extends AbstractController
 {
     /**
-     * @Route("/views", name="_profiler_home")
+     * @Route("profile/views", name="_profiler_home")
      */
     public function index(): Response
-    {
-        return $this->render('views/index.html.twig', [
+   
+        {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+            return $this->render('views/index.html.twig', [
             'controller_name' => 'ViewsController',
         ]);
     }
@@ -21,15 +23,15 @@ class ViewsController extends AbstractController
 
 
      /**
-     * @Route("/views1", name="_admin_home")
+     * @Route("/admin/views1", name="_admin_home")
      */
     public function show(): Response
-    {
+    {  $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('views/view1.html.twig');
     }
 
      /**
-     * @Route("/views2", name="_anonymos_page")
+     * @Route("views2", name="_anonymos_page")
      */
     public function show2(): Response
     {

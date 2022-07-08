@@ -95,7 +95,7 @@ class UserAuthentificatorAuthenticator extends AbstractFormLoginAuthenticator im
             return new RedirectResponse($targetPath);
         }
 
-         return new RedirectResponse($this->urlGenerator->generate('_anonymos_page'));
+         return new RedirectResponse($this->urlGenerator->generate('_profiler_home'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
