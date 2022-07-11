@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %} 
+
+
+     
+{% block javascripts %} 
+   <script language = "javascript" 
+      src = "https://code.jquery.com/jquery-2.2.4.min.js"></script> 
+   
+   <script language = "javascript">  
+      $(document).ready(function(){   
+         $("#loaduser").on("click", function(event){  
+            $.ajax({  
+               url:        '/views3',  
+               type:       'POST',   
+               dataType:   'json',  
+               async:      true,  
+               
+               success: function(data, status) {  
+                  var e = $('<tr><th>  Email</th></tr>');  
+                  $('#user').html('');  
+                  $('#user').append(e);  
+                  
+                  for(i = 0; i < data.length; i++) {  
+                     user = data[i];  
+                     var e = $('<tr><td id = "username"></td></tr>');
+                     
+                     $('#username', e).html(user['username']);  
+                     $('#user').append(e);  
+                  }  
+               },  
+               error : function(xhr, textStatus, errorThrown) {  
+                  alert('Ajax request failed.');  
+               }  
+            });  
+         });  
+      });  
+   </script> 
+{% endblock %}  
+
+{% block stylesheets %} 
+   
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            {#{{ encore_entry_link_tags('app') }}#}
+
+             <style>
+      .table { border-collapse: collapse; } 
+
+      .table th, td { 
+         border-bottom: 1px solid #ddd; 
+         width: 250px; 
+         text-align: left; 
+         align: left; 
+      } 
+   </style> 
+{% endblock %} 
+
+{% block body %} 
+<button  id = "loaduser" type="button" class="btn btn-light">user's information</button>
+  
+   </br> 
+   </br>  
+   
+   <table class = "table">  
+      <tbody id = "user"></tbody>  
+   </table>     
+{% endblock %}
