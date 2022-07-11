@@ -16,15 +16,16 @@
                async:      true,  
                
                success: function(data, status) {  
-                  var e = $('<tr><th>  Email</th></tr>');  
+                  var e = $('<tr><th>  Email</th><th>ID</th></tr>');  
                   $('#user').html('');  
                   $('#user').append(e);  
                   
                   for(i = 0; i < data.length; i++) {  
                      user = data[i];  
-                     var e = $('<tr><td id = "username"></td></tr>');
+                     var e = $('<tr><td id = "username"></td><td id = "id"></td></tr>');
                      
                      $('#username', e).html(user['username']);  
+                      $('#id', e).html(user['id']);
                      $('#user').append(e);  
                   }  
                },  
@@ -56,7 +57,7 @@
 
 {% block body %} 
 <button  id = "loaduser" type="button" class="btn btn-light">user's information</button>
-  
+
    </br> 
    </br>  
    

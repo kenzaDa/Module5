@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %} {% block body %} 
+<button  onclick='myFunction()'  type="button" class="btn btn-light">user's information</button>
+
+   </br> 
+   </br>  
+    <div id="email">user details will be here</div>
+
+  
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ 
+<script>
+    
+    function myFunction(){
+ 
+        axios.get("/get").then(function(response){
+        
+            document.getElementById('email').textContent = response.data.email;
+           
+        })
+    }
+ 
+</script>
+ 
+{% endblock %}
+{% block stylesheets %} 
+   
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            {#{{ encore_entry_link_tags('app') }}#}
+
+             <style>
+      .table { border-collapse: collapse; } 
+
+      .table th, td { 
+         border-bottom: 1px solid #ddd; 
+         width: 250px; 
+         text-align: left; 
+         align: left; 
+      } 
+   </style> 
+{% endblock %} 

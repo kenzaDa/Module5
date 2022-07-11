@@ -42,6 +42,24 @@ class ViewsController extends AbstractController
     {
         return $this->render('views/view2.html.twig');
     }
+    /**
+     * @Route("/get", name="get")
+     */
+    public function getDetails()
+    {
+       $user = $this->getUser();
+       return  $this->json([
+      
+        'email' => $user->getEmail()
+       ]);
+       
+    }
+/**
+     * @Route("/views4", name="getdetails")
+     */
+    public function show4(){
+        return $this->render('views/current.html.twig');
+    }
 
 
   /**
@@ -68,7 +86,7 @@ class ViewsController extends AbstractController
            return new JsonResponse($jsonData); 
         } else { 
            return $this->render('views/ajax.html.twig',[
-            'username' => 'username',
+            'username' => 'username','id' => 'id',
         ]); 
         } 
 
