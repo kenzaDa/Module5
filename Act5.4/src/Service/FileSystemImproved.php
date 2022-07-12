@@ -25,9 +25,9 @@ class FileSystemImproved {
     {
         $this->fs = new Filesystem();
         $this->finder  = new Finder();
-//creer fsi par le constructeur si fsi n'existe pas
-        if (!$this->fs->exists(dirname(getcwd()) . "\\vendor\symfony\http-client-contracts\Test\Fixtures\web\\fsi")) {
-            $this->fs->mkdir(dirname(getcwd()) . "\\vendor\symfony\http-client-contracts\Test\Fixtures\web\\fsi");
+       //creer fsi par le constructeur si fsi n'existe pas
+        if (!$this->fs->exists("C:\Users\kdaghrir\Desktop\Module5\\Act5.4\\vendor\symfony\http-client-contracts\Test\Fixtures\web\\fsi")) {
+            $this->fs->mkdir("C:\Users\kdaghrir\Desktop\Module5\\Act5.4\\vendor\symfony\http-client-contracts\Test\Fixtures\web\\fsi");
         }
     }
 
@@ -45,28 +45,30 @@ class FileSystemImproved {
         return $files;
     }
    // Créé un fichier et retourne un tableau représentant tous les fichiers présents dans le meme dossier que lui après sa création
-    public function createFile($filename){
+   public function createFile($filename){
 
-        try {
-           
-            $current_dir_path = dirname(getcwd()) ."\\vendor\symfony\http-client-contracts\Test\Fixtures\web\\fsi";
-         
-            $new_file_path = $current_dir_path . "/$filename.txt";
-         
-            if (!$this->fs->exists($new_file_path))
-            {
-                $this->fs->touch($new_file_path);
-                $this->fs->chmod($new_file_path, 0777);
-               
-                 $message="new file created";
-            }
+    
+        $current_dir_path ="C:\Users\kdaghrir\Desktop\Module5\\Act5.4\\vendor\symfony\http-client-contracts\Test\Fixtures\web\\fsi";
+     
+        $new_file_path = $current_dir_path . "\\$filename.txt";
+     
+        if (!$this->fs->exists($new_file_path))
+        {
+            $this->fs->touch($new_file_path);
+            $this->fs->chmod($new_file_path, 0777);
         
-        } catch (IOExceptionInterface $exception) {
-            echo "Error creating file at". $exception->getPath();
-        }
-        $message="new file created";
-         return new Response($message);
+
+    $this->finder->in(dirname(getcwd()))->path('fsi');
+    foreach ($this->finder as $file) {
+        $path = $file->getPath().'\\';
     }
+
+    $resultat = $this->finder->files()->in($path);
+    foreach ($resultat as $file) {
+        $files[] = $file->getFilename();
+    }
+    return $files;
+}}
 
 
 

@@ -25,7 +25,7 @@ use Symfony\Component\HttpKernel\EventListener\ExceptionListener;
 class FilesController extends AbstractController
 {
     /**
-     * @Route("/files", name="app_files")
+     * @Route("/test", name="app_files")
      */
     public function index(): Response
     {
@@ -155,7 +155,7 @@ try {
     public function State(FileSystemImproved $fileSystemImproved){
         $returnValue = $fileSystemImproved->state();
         
-        return new JsonResponse(json_encode($returnValue));
+        return new JsonResponse(($returnValue));
     }
 
 /**
@@ -163,7 +163,7 @@ try {
       */
     public function Create_File(FileSystemImproved $FSI,$filename){
         $returnValue=$FSI->createFile($filename);
-        return new JsonResponse(json_encode($returnValue));
+        return new JsonResponse(($returnValue));
     }
 /**
       * @Route("/delete-file/{filename}", name="deletef" )
