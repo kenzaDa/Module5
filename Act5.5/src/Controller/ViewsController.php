@@ -7,6 +7,7 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Omines\DataTablesBundle\Adapter\ArrayAdapter;
 use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\Column\TwigColumn;
 use Omines\DataTablesBundle\DataTableFactory;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,6 +44,7 @@ class ViewsController extends AbstractController
             ->add('id', TextColumn::class,['label' => 'Identifiant'])
             ->add('email', TextColumn::class,['label' => 'Adresse mail'])
             ->add('Action', TextColumn::class,['label' => 'Action'])
+            
             ->createAdapter(ORMAdapter::class, [
                 'entity' => User::class,
             ])
