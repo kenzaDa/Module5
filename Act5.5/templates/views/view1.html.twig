@@ -2,18 +2,22 @@
 
 {% block title %}Admin only{% endblock %}
 {% block body %}
-<div class="container">
- <h1>Gerer vos utilisateurs</h1>
-
-<div id="presidents"></div>
-
-
-    <h1>Ajouter une recette</h1>
+<br>
 {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+    <br>
+<div class="container">
+<br>
+ <h1>Gerer vos utilisateurs</h1>
+<br>
+<div id="tableuser">loading...</div>
+<br>
+
+    <h1>Ajouter une recette</h1>
+
 <section class="vh-100" style="background-color: #eee;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -73,8 +77,21 @@
 <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
 <script>
 $(function() {
-    $('#presidents').initDataTables({{ datatable_settings(datatable) }});
+   
+
+    $('#tableuser').initDataTables({{ datatable_settings(datatable) }}, {
+    searching: true,
+    dom:'<"html5buttons"B>lTfgitp',
+    buttons: [
+        'copy',
+        { extend: 'pdf', title: 'domains'},
+        { extend: 'print' }
+    ]
+})
 });
+
+
+
 </script>
 
     {% endblock %}

@@ -40,8 +40,9 @@ class ViewsController extends AbstractController
       
         
         $table = $dataTableFactory->create()
-            ->add('id', TextColumn::class)
-            ->add('email', TextColumn::class)
+            ->add('id', TextColumn::class,['label' => 'Identifiant'])
+            ->add('email', TextColumn::class,['label' => 'Adresse mail'])
+            ->add('Action', TextColumn::class,['label' => 'Action'])
             ->createAdapter(ORMAdapter::class, [
                 'entity' => User::class,
             ])
