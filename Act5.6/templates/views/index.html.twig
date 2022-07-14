@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ViewsController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+  
+</div>
+
+
+{% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+ 
+ 
+
+<article>
+<h2>Basílio : la bonne surprise</h2>
+<div class ="metadata"> ecrit le 29/06/2022 </div>
+
+<div class ="content"> 
+<img class="image" style= "width: 20px, height: 30px;" src="https://www.aux-fourneaux.fr/wp-content/uploads/2022/02/5-meilleure-adresse-pour-bruncher-a-Lisbonne-800x1067.jpg" >
+<p> Dans une tout autre ambiance, direction Basílio pour aller bruncher ! En tombant par hasard sur cette adresse au détour d’une rue, j’ai remercié le hasard de mes déambulations car cette adresse de brunch vient directement se hisser dans mon top 5 des restaurants pour bien bruncher à Lisbonne.
+
+Chez Basílio on ne fait pas les choses à moitié et on vous sert un très bon petit déjeuner original et copieux, de quoi attaquer la journée du bon pied sans vous ruiner. Mon favoris ? L’Açai bowl dont je rêve encore aujourd’hui !
+
+Adresse : Rua dos Bacalhoeiros 111, 1100-068 Lisboa</p>
+<hr>
+<p>Nicolau est un endroit pour un brunch qui figure dans de nombreux guides. Si j’aime vous proposer des bonnes adresses insolites et qui changent un peu de ce que l’on entend partout, je ne pouvais pas faire l’impasse sur cet incontournable pour aller bruncher à Lisbonne.
+
+Sans doute l’un des meilleurs brunchs de la ville, un petit déjeuner au Nicolau c’est un choix très varié allant d’un succulent avocado toast aux œufs Amalia en passant par des bowl généreux et des pancakes à tomber. On y mange bien, les portions sont copieuses et l’addition n’est pas si salée pour un lieu si populaire. Néanmoins, victime de sa popularité, je vous conseille de réserver pour ne pas attendre trop impatiemment votre brunch.
+
+Adresse : R. de São Nicolau 17, 1100-547 Lisboa</p>
+
+</div>
+</article>
+
+
+
+<article>
+<h2>Recette de gaufres aux épinards et fromage</h2>
+<div class ="metadata"> ecrit le 29/06/2022 </div>
+
+<div class ="content"> 
+<img class="image" style= "width: 20px, height: 30px;" src="https://www.aux-fourneaux.fr/wp-content/uploads/2020/11/Gaufres-aux-%C3%A9pinards-et-fromage-800x450.jpg" >
+<hr>
+<p>Dans un saladier, verser la farine et la levure puis mélanger.
+Incorporer les œufs, l'huile, le lait.
+Assaisonner selon vos gouts .
+Ajouter le fromage râpé et les épinards préalablement hachés. Mélanger.
+Cuire dans le gaufrier.
+</p>
+</div>
+</article>
+
+<article>
+<h2>Muffins aux framboises extra moelleux.</h2>
+<div class ="metadata"> ecrit le 22/04/2022 </div>
+
+<div class ="content"> 
+<img src="https://www.aux-fourneaux.fr/wp-content/uploads/2022/05/Muffins-aux-framboises-extra-moelleux-800x549.jpeg" >
+<hr>
+<p>Une recette facile de muffins aux framboises extra moelleux. Cette recette de muffins est parfaite, idéale pour le petit-déjeuner et le goûter ! Je me demande comme il est possible qu’elle ne soit pas encore sur le blog alors qu’elle se trouve sur mon compte Instagram depuis plusieurs années. Ces muffins aux framboises sont très faciles à préparer et, croyez-moi le résultat est vraiment moelleux.
+
+Cette recette plait beaucoup, et j’adore toujours autant la faire découvrir aux gourmands. Bien entendu, elle peut se réaliser avec le fruit de votre choix : pommes, abricots, mûres, cerises… N’hésitez pas à varier les plaisirs ! Si vous aimez ce type de recette, je vous recommande les muffins aux myrtilles fraiches. Ils sont vraiment excellents !</p>
+
+
+</div>
+</article>
+
+
+
+
+    {% if is_granted('ROLE_ADMIN')%}
+
+<div class="container">
+    <h1>Ajouter une recette</h1>
+
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Ajouter une recette</p>
+
+                <form class="mx-1 mx-md-4" >
+
+                  
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" id="form3Example3c" class="form-control" />
+                      <label class="form-label" for="form3Example3c">Your Email</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4c" class="form-control" />
+                      <label class="form-label" for="form3Example4c">Password</label>
+                    </div>
+                  </div>
+
+                  
+
+                 
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg" >Ajouter une recette</button>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://th.bing.com/th/id/R.11cd84a65602981b2555c654a5bba335?rik=Ng40zG0gwJrisA&pid=ImgRaw&r=0"
+                  class="img-fluid" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        
+   
+{% endif %}
+    
+
+{% endblock %}
