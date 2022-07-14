@@ -3,51 +3,59 @@
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-
-use Symfony\Component\Mailer\MailerInterface;
+use App\Repository\UserRepository;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 
 class MailsenderCommand extends Command
-{
+{protected static $defaultName = 'Mailsender';
+    protected static $defaultDescription = 'Sends Emails to users';
+    private $userRepository;
    
-        private $MailerInterface;
-
-        protected static $defaultName = 'app:Mailsender';
-       
-       
-        public function __construct( MailerInterface $MailerInterface)
-        {
-            
-            $this->MailerInterface = $MailerInterface;
-            parent::__construct(null);
-        }
-       
-
-        protected function configure()
-        {
-            $this
-                ->setDescription('Send daily emails to users')
-            ;
-        }
-        protected function execute(InputInterface $input, OutputInterface $output )
-        {   
-            
-            $email = (new Email())
-            ->from('kenza.daghrir@talan.com')
-            ->to('kenza.daghrir@talan.com')
+    public function __construct(UserRepository $userRepository, MailerInterface $mailer )
+    {
+        parent::__construct(null);
+        $this->userRepository = $userRepository;
+        $this->mailer=$mailer;
+    }
+  
+    protected function configure(): void
+    {
+        $this
+            ->setDescription(self::$defaultDescription)
           
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>Bonjour </p>');
+            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+           
+        ;
+    }
 
-            $this->MailerInterface->send($email);
-         
-            
-         
-           
-           
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    { 
+        $io = new SymfonyStyle($input, $output);
+        $users = $this->userRepository->findAll();
+        foreach ($users as $user) {
+            if (!in_array('ROLE_ADMIN',$user->getRoles())) {
+                $address[] = $user->getEmail();
+              
+            }
         }
+        
+        $email = (new Email())
+                    ->from('kenza.daghgrir@talan.com')
+                    ->to(...$address)
+                    ->subject('Bonjour')
+                    ->text('Bonjour bienvenue à Talan Academy ')
+                    ;
+                    $this->mailer->send($email);
+
+        $io->success('Emails sends successfully !');
+
+        return 0;
+    }
+
     }
