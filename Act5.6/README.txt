@@ -28,3 +28,8 @@ un bonton logout s'ajoute à la navbar si l'utlisiteur est logged in (en cas de 
 page d'acces apres authentification (affichage selon le role)             /profile/views
 accessible seulement si le role est admin                /admin/views1
 pour acceder au datatable          /admin
+
+afin de tester la commade mail sender il faut creer un compte mailtrap et modifier dans .env
+lancer la commande symfony console app:Mailsender (envoyer un mail à tous les utilisateur) 
+lancer la commande pour envoyer un mail à un utilisateur bien défini symfony console OneUserMailsender arg 
+avec arg le mail de l'utilisateur 
