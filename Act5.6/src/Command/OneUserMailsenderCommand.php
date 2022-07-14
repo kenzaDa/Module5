@@ -26,7 +26,8 @@ class OneUserMailsenderCommand extends Command
         $this
             ->setDescription(self::$defaultDescription)
             ->addArgument('arg', InputArgument::REQUIRED, 'The email of the user.')
-           
+           ->addOption('option1', null, InputOption::VALUE_REQUIRED, 'Option description')
+        
         ;
     }
 
