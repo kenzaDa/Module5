@@ -1,8 +1,9 @@
 les commandes qu'il faut lancer pour tester le projet
 1- composer install
 2- php bin/console doctrine:database:create
-3- php bin/console migrations:migrate
-4-php bin/console server:run
+3- php bin/console doctrine:migrations:migrate
+4- composer require server
+5-php bin/console server:run
 
 
 les commandes sql à exécuter present dans le fichier newdb.sql
